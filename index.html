@@ -1,139 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>تحويل النص إلى فيديو | Smart Video Gen</title>
-  styles.css
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Smart Video Gen - واجهة مبدئية لتحويل النص إلى فيديو" />
+  <title>Smart Video Gen</title>
+  ./styles.css
 </head>
-<body>
-
+<body class="rtl">
   <header class="topbar">
-    <div class="brand">Smart Video Gen</div>
-    <div class="status" id="deployStatus">جاهز</div>
-  </header>
-
-  <main class="container">
-
-    <!-- شاشة الإنشاء -->
-    <section id="screen-generate" class="screen active">
-      <h1>إنشاء</h1>
-
-      <label for="prompt" class="lbl">وصف الفيديو</label>
-            <option value="en-US">English</option>
-            <option value="de-DE">Deutsch</option>
-          </select>
-        </div>
-        <div class="col">
-          <label for="duration" class="lbl">المدة (ث)</label>
-          <select id="duration">
-            <option value="10">10</option>
-            <option value="15" selected>15</option>
-            <option value="30">30</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <label for="aspect" class="lbl">نسبة الأبعاد</label>
-          <select id="aspect">
-            <option value="16:9" selected>16:9</option>
-            <option value="9:16">9:16</option>
-            <option value="1:1">1:1</option>
-          </select>
-        </div>
-        <div class="col">
-          <label for="quality" class="lbl">جودة الفيديو</label>
-          <select id="quality">
-            <option value="720p" selected>720p</option>
-            <option value="1080p">1080p</option>
-          </select>
-        </div>
-      </div>
-
-      <button id="btnGenerate" class="primary">إنشاء الفيديو</button>
-
-      <div id="progress" class="progress hidden">
-        <div class="bar" id="progressBar" style="width:0%"></div>
-      </div>
-
-      <div id="result" class="result muted">
-        سيظهر الفيديو هنا بعد الإنشاء.
-      </div>
-    </section>
-
-    <!-- شاشة فيديوهاتي -->
-    <section id="screen-myvideos" class="screen">
-      <h1>فيديوهاتي</h1>
-
-      <h3 class="section-title">اليوم</h3>
-      <div class="cards">
-        <div class="card">
-          <div class="thumb">🎬</div>
-          <div class="meta">
-            <div class="title">قطة ترتدي قبعة</div>
-            <div class="sub">10 ثواني • 2025‑09‑05</div>
-          </div>
-        </div>
-      </div>
-
-      <h3 class="section-title">الأمس</h3>
-      <div class="cards">
-        <div class="card">
-          <div class="thumb">🎥</div>
-          <div class="meta">
-            <div class="title">كلب يلعب</div>
-            <div class="sub">10 ثواني • 2025‑09‑04</div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="thumb">📹</div>
-          <div class="meta">
-            <div class="title">عصفور يغني</div>
-            <div class="sub">10 ثواني • 2025‑09‑04</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- شاشة الإعدادات -->
-    <section id="screen-settings" class="screen">
-      <h1>الإعدادات</h1>
-
-      <label for="defaultLanguage" class="lbl">اللغة الافتراضية</label>
-      <select id="defaultLanguage">
-        <option value="ar-EG">العربية</option>
-        <option value="en-US">English</option>
-        <option value="de-DE">Deutsch</option>
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00d4a7" d="M12 2l3.5 6 6.5.9-4.7 4.6 1.1 6.5L12 17l-6 3.1 1.1-6.5L2.4 8.9 8.9 8z"/></svg>
+      <span>Smart Video Gen</span>
+    </div>
+    <nav class="actions">
+      <select id="uiLang" title="لغة الواجهة" aria-label="لغة الواجهة">
+        <option value="ar" selected>العربية</option>
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
       </select>
+      <button id="openSettings" class="ghost" type="button">⚙️</button>
+      <a class="link" href="#" id="appVersion" aria-label="إصدار التطبيق">v0.لإنشاء -->
+    <section class="card" aria-labelledby="genTitle">
+      <h2 id="genTitle">إنشاء فيديو</h2>
 
-      <label for="defaultQuality" class="lbl">جودة الفيديو الافتراضية</label>
-      <select id="defaultQuality">
-        <option value="720p">720p</option>
-        <option value="1080p">1080p</option>
-      </select>
+      <form id="genForm">
+        <div class="field">
+          <label for="desc" id="lblDesc">وصف الفيديو</label>
+          <textarea id="desc" rows="7" placeholder="اكتب وصفًا واضحًا للفيديو الذي تريد إنشاؤه..."></textarea>
+          <small class="hint" id="descHint">مثال: إعلان قصير لمنتج…</small>
+        </div>
 
-      <button id="btnSaveSettings" class="secondary">حفظ الإعدادات</button>
+        <div class="cols">
+          <div class="field">
+            <label for="duration" id="lblDuration">المدة (ث)</label>
+            <input id="duration" type="number" min="5" max="180" step="5" value="15" />
+          </div>
 
-      <div id="settingsToast" class="toast hidden">تم حفظ الإعدادات ✅</div>
+          <div class="field">
+            <label for="aspect" id="lblAspect">نسبة الأبعاد</label>
+            <select id="aspect">
+              <option value="16:9" selected>16:9</option>
+              <option value="9:16">9:16</option>
+              <option value="1:1">1:1</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="quality" id="lblQuality">جودة الفيديو</label>
+            <select id="quality">
+              <option value="720p" selected>720p</option>
+              <option value="1080p">1080p</option>
+              <option value="4k">4K</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="cols">
+          <div class="field">
+            <label for="voice" id="lblVoice">لغة التعليق الصوتي</label>
+            <select id="voice">
+              <option value="ar" selected>العربية</option>
+              <option value="en">English</option>
+              <option value="de">Deutsch</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="style" id="lblStyle">الأسلوب</label>
+            <select id="style">
+              <option value="promo" selected>ترويجي</option>
+              <option value="educational">تعليمي</option>
+              <option value="news">أخباري</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="theme" id="lblTheme">الثيم</label>
+            <select id="theme">
+              <option value="dark" selected>داكن</option>
+              <option value="light">فاتح</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="btnGenerate" class="primary" type="submit">إنشاء الفيديو</button>
+        <div id="status" class="status" aria-live="polite"></div>
+      </form>
     </section>
 
+    <!-- المعاينة -->
+    <section class="card" aria-labelledby="previewTitle">
+      <h2 id="previewTitle">المعاينة</h2>
+      <div id="preview" class="preview">
+        <div class="placeholder">
+          <span>سيظهر الفيديو هنا بعد الإنشاء.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- فيديوهاتي -->
+    <section class="card" aria-labelledby="myVideosTitle">
+      <h2 id="myVideosTitle">فيديوهاتي</h2>
+      <div id="videoList" class="list"></div>
+    </section>
   </main>
 
-  <!-- شريط تنقّل سفلي -->
-  <nav class="bottombar">
-    <button data-target="generate" class="nav-btn active">إنشاء</button>
-    <button data-target="myvideos" class="nav-btn">فيديوهاتي</button>
-    <button data-target="settings" class="nav-btn">الإعدادات</button>
-  </nav>
+  <!-- نافذة الإعدادات -->
+  <dialog id="settingsDlg" class="card settings">
+    <form method="dialog">
+      <header class="dialog-title">
+        <h3 id="settingsTitle">الإعدادات</h3>
+        <button id="closeSettings" class="ghost" type="button" aria-label="إغلاق">✖</button>
+      </header>
+      <div class="cols">
+        <div class="field">
+          <label for="defLang" id="lblDefLang">اللغة الافتراضية</label>
+          <select id="defLang">
+            <option value="ar" selected>العربية</option>
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="defQuality" id="lblDefQuality">الجودة الافتراضية</label>
+          <select id="defQuality">
+            <option value="720p" selected>720p</option>
+            <option value="1080p">1080p</option>
+            <option value="4k">4K</option>
+          </select>
+        </div>
+      </div>
+      <button id="btnSaveSettings" class="primary" type="submit">حفظ الإعدادات</button>
+      <div id="settingsMsg" class="status"></div>
+    </form>
+  </dialog>
 
-  app.js</script>
+  <footer class="footer">
+    <small>© 2025 Smart Video Gen — واجهة مبدئية. سيتم ربط الخدمات الخلفية لاحقًا.</small>
+  </footer>
+
+  ./app.js</script>
 </body>
-</html>      <textarea id="prompt" rows="4" placeholder="اكتب وصف الفيديو الذي تريد إنشاءه..."></textarea>
-
-      <div class="row">
-        <div class="col">
-          <label for="language" class="lbl">اختر اللغة</label>
-          <select id="language">
-            <option value="ar-EG">العربية</option>
+</html>
