@@ -2,25 +2,41 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Smart Video Gen - واجهة مبدئية لتحويل النص إلى فيديو" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Smart Video Gen - واجهة أولية لتحويل النص إلى فيديو" />
+  <meta name="color-scheme" content="dark light" />
   <title>Smart Video Gen</title>
-  ./styles.css
+
+  <!-- ربط CSS من جذر الموقع -->
+  /styles.css
 </head>
 <body class="rtl">
-  <header class="topbar">
-    <div class="brand">
-      <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00d4a7" d="M12 2l3.5 6 6.5.9-4.7 4.6 1.1 6.5L12 17l-6 3.1 1.1-6.5L2.4 8.9 8.9 8z"/></svg>
+  <!-- شريط علوي -->
+  <header class="topbar" role="banner">
+    <div class="brand" aria-label="هوية التطبيق">
+      <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#00d4a7" d="M12 2l3.5 6 6.5.9-4.7 4.6 1.1 6.5L12 17l-6 3.1 1.1-6.5L2.4 8.9 8.9 8z"/>
+      </svg>
       <span>Smart Video Gen</span>
     </div>
-    <nav class="actions">
+
+    <nav class="actions" aria-label="إجراءات عامة">
+      <label class="sr-only" for="uiLang">لغة الواجهة</label>
       <select id="uiLang" title="لغة الواجهة" aria-label="لغة الواجهة">
         <option value="ar" selected>العربية</option>
         <option value="en">English</option>
         <option value="de">Deutsch</option>
       </select>
-      <button id="openSettings" class="ghost" type="button">⚙️</button>
-      <a class="link" href="#" id="appVersion" aria-label="إصدار التطبيق">v0.لإنشاء -->
+
+      <button id="openSettings" class="ghost" type="button" aria-label="الإعدادات">⚙️</button>
+      <span id="appVersion" class="app-version" aria-label="إصدار التطبيق">v0.1.0</span>
+    </nav>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <main class="grid" id="mainContent">
+    <!-- إنشاء فيديو -->
     <section class="card" aria-labelledby="genTitle">
       <h2 id="genTitle">إنشاء فيديو</h2>
 
@@ -92,7 +108,7 @@
     <!-- المعاينة -->
     <section class="card" aria-labelledby="previewTitle">
       <h2 id="previewTitle">المعاينة</h2>
-      <div id="preview" class="preview">
+      <div id="preview" class="preview" role="region" aria-live="polite">
         <div class="placeholder">
           <span>سيظهر الفيديو هنا بعد الإنشاء.</span>
         </div>
@@ -107,12 +123,13 @@
   </main>
 
   <!-- نافذة الإعدادات -->
-  <dialog id="settingsDlg" class="card settings">
+  <dialog id="settingsDlg" class="card settings" aria-labelledby="settingsTitle">
     <form method="dialog">
       <header class="dialog-title">
         <h3 id="settingsTitle">الإعدادات</h3>
         <button id="closeSettings" class="ghost" type="button" aria-label="إغلاق">✖</button>
       </header>
+
       <div class="cols">
         <div class="field">
           <label for="defLang" id="lblDefLang">اللغة الافتراضية</label>
@@ -122,6 +139,7 @@
             <option value="de">Deutsch</option>
           </select>
         </div>
+
         <div class="field">
           <label for="defQuality" id="lblDefQuality">الجودة الافتراضية</label>
           <select id="defQuality">
@@ -131,6 +149,7 @@
           </select>
         </div>
       </div>
+
       <button id="btnSaveSettings" class="primary" type="submit">حفظ الإعدادات</button>
       <div id="settingsMsg" class="status"></div>
     </form>
@@ -140,6 +159,7 @@
     <small>© 2025 Smart Video Gen — واجهة مبدئية. سيتم ربط الخدمات الخلفية لاحقًا.</small>
   </footer>
 
-  ./app.js</script>
+  <!-- ربط JS من جذر الموقع (مع defer لضمان جاهزية DOM) -->
+  /app.js</script>
 </body>
 </html>
