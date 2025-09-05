@@ -1,7 +1,22 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/assets/*", "*.css", "*.js", "*.png", "*.jpg", "*.svg", "*.webp", "*.ico"]
+    "exclude": [
+      "/assets/*",
+      "*.css",
+      "*.js",
+      "*.png",
+      "*.jpg",
+      "*.jpeg",
+      "*.svg",
+      "*.webp",
+      "*.gif",
+      "*.ico",
+      "*.woff",
+      "*.woff2",
+      "*.ttf",
+      "*.map"
+    ]
   },
   "globalHeaders": {
     "Content-Security-Policy": "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'",
