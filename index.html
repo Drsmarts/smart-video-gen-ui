@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تحويل النص إلى فيديو | Smart Video Gen</title>
+  styles.css
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">Smart Video Gen</div>
+    <div class="status" id="deployStatus">جاهز</div>
+  </header>
+
+  <main class="container">
+
+    <!-- شاشة الإنشاء -->
+    <section id="screen-generate" class="screen active">
+      <h1>إنشاء</h1>
+
+      <label for="prompt" class="lbl">وصف الفيديو</label>
+            <option value="en-US">English</option>
+            <option value="de-DE">Deutsch</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="duration" class="lbl">المدة (ث)</label>
+          <select id="duration">
+            <option value="10">10</option>
+            <option value="15" selected>15</option>
+            <option value="30">30</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label for="aspect" class="lbl">نسبة الأبعاد</label>
+          <select id="aspect">
+            <option value="16:9" selected>16:9</option>
+            <option value="9:16">9:16</option>
+            <option value="1:1">1:1</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="quality" class="lbl">جودة الفيديو</label>
+          <select id="quality">
+            <option value="720p" selected>720p</option>
+            <option value="1080p">1080p</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="btnGenerate" class="primary">إنشاء الفيديو</button>
+
+      <div id="progress" class="progress hidden">
+        <div class="bar" id="progressBar" style="width:0%"></div>
+      </div>
+
+      <div id="result" class="result muted">
+        سيظهر الفيديو هنا بعد الإنشاء.
+      </div>
+    </section>
+
+    <!-- شاشة فيديوهاتي -->
+    <section id="screen-myvideos" class="screen">
+      <h1>فيديوهاتي</h1>
+
+      <h3 class="section-title">اليوم</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="thumb">🎬</div>
+          <div class="meta">
+            <div class="title">قطة ترتدي قبعة</div>
+            <div class="sub">10 ثواني • 2025‑09‑05</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-title">الأمس</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="thumb">🎥</div>
+          <div class="meta">
+            <div class="title">كلب يلعب</div>
+            <div class="sub">10 ثواني • 2025‑09‑04</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="thumb">📹</div>
+          <div class="meta">
+            <div class="title">عصفور يغني</div>
+            <div class="sub">10 ثواني • 2025‑09‑04</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- شاشة الإعدادات -->
+    <section id="screen-settings" class="screen">
+      <h1>الإعدادات</h1>
+
+      <label for="defaultLanguage" class="lbl">اللغة الافتراضية</label>
+      <select id="defaultLanguage">
+        <option value="ar-EG">العربية</option>
+        <option value="en-US">English</option>
+        <option value="de-DE">Deutsch</option>
+      </select>
+
+      <label for="defaultQuality" class="lbl">جودة الفيديو الافتراضية</label>
+      <select id="defaultQuality">
+        <option value="720p">720p</option>
+        <option value="1080p">1080p</option>
+      </select>
+
+      <button id="btnSaveSettings" class="secondary">حفظ الإعدادات</button>
+
+      <div id="settingsToast" class="toast hidden">تم حفظ الإعدادات ✅</div>
+    </section>
+
+  </main>
+
+  <!-- شريط تنقّل سفلي -->
+  <nav class="bottombar">
+    <button data-target="generate" class="nav-btn active">إنشاء</button>
+    <button data-target="myvideos" class="nav-btn">فيديوهاتي</button>
+    <button data-target="settings" class="nav-btn">الإعدادات</button>
+  </nav>
+
+  app.js</script>
+</body>
+</html>      <textarea id="prompt" rows="4" placeholder="اكتب وصف الفيديو الذي تريد إنشاءه..."></textarea>
+
+      <div class="row">
+        <div class="col">
+          <label for="language" class="lbl">اختر اللغة</label>
+          <select id="language">
+            <option value="ar-EG">العربية</option>
